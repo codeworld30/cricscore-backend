@@ -1,5 +1,7 @@
 .idea/
 .gradle/
 gradle
+build
+out
 cricscore-service.iml
 
