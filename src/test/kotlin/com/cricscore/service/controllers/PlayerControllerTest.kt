@@ -1,27 +1,29 @@
 package com.cricscore.service.controllers
 
+import com.cricscore.service.services.PlayersService
 import org.junit.Assert.assertEquals
 import org.junit.Assert.assertNotNull
 import org.junit.Test
 import org.junit.runner.RunWith
-import org.springframework.beans.factory.annotation.Autowired
-import org.springframework.boot.test.context.SpringBootTest
-import org.springframework.boot.test.web.client.TestRestTemplate
-import org.springframework.http.HttpStatus
-import org.springframework.test.context.junit4.SpringRunner
+import org.mockito.InjectMocks
+import org.mockito.Mock
+import org.mockito.Mockito.doReturn
+import org.mockito.junit.MockitoJUnitRunner
 
-@RunWith(SpringRunner::class)
-@SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
+@RunWith(MockitoJUnitRunner::class)
 class PlayerControllerTest {
 
-    @Autowired
-    lateinit var testRestTemplate: TestRestTemplate
+    @InjectMocks
+    lateinit var playerController: PlayerController
+
+    @Mock
+    lateinit var playersService: PlayersService
 
     @Test
     fun firstAPITest() {
-        val result = testRestTemplate.getForEntity("/players", String::class.java)
+        doReturn("Hello players").`when`(playersService).getAllPlayers()
+        val result = playerController.players()
         assertNotNull(result)
-        assertEquals(result.statusCode, HttpStatus.OK)
-        assertEquals(result.body, "Player")
+        assertEquals("Hello players", result)
     }
 }
