@@ -1,8 +1,7 @@
-package com.cricscore.service
+package com.cricscore.service.controllers
 
 import org.springframework.web.bind.annotation.GetMapping
 import org.springframework.web.bind.annotation.RestController
-
 
 @RestController
 class PlayerController {
