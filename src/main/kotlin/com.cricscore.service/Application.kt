@@ -7,5 +7,6 @@ import org.springframework.boot.runApplication
 class CricScoreServiceApplication
 
 fun main(args: Array<String>) {
+    println("Starting service")
     runApplication<CricScoreServiceApplication>(*args)
 }
